@@ -1,0 +1,6 @@
+---
+# defaults file for protobuf
+
+protobuf_version: 2.6.1
+protobuf_url: https://github.com/google/protobuf/releases/download/v{{ protobuf_version }}/protobuf-{{ protobuf_version }}.tar.gz
+protobuf_prefix: /opt/protobuf/{{ protobuf_version }}

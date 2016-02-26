@@ -1,0 +1,17 @@
+---
+# Task file for protobuf install
+
+- name: create protobuf dorectory
+  file: path={{ protobuf_prefix }} state=directory owner=root group=root mode=0755
+
+- name: download protobuf
+  get_url: url={{ protobuf_url }} dest=/tmp/protobuf-{{ protobuf_version }}.tar.gz
+
+- name: extract protobuf tarball
+  unarchive: copy=no src=/tmp/protobuf-{{ protobuf_version }}.tar.gz dest=/tmp creates=/tmp/protobuf-{{ protobuf_version }}
+
+- name: install protobuf
+  shell: ./configure --prefix={{ protobuf_prefix }} && make && make install
+  args:
+    chdir: /tmp/protobuf-{{ protobuf_version }}
+    creates: "{{ protobuf_prefix}}/lib"
